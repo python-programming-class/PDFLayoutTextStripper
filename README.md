@@ -67,6 +67,36 @@ public class test {
 }
 ```
 
+## With Python
+
+`Step 1.` Install [py4j](https://www.py4j.org/install.html#install-instructions)
+
+`Step 2.` Run Python Gateway
+```sh
+java -jar python-gateway.jar
+```
+
+or with custom port
+```sh
+java -jar python-gateway.jar 2222
+```
+
+`Step 3.` Parse pdf file with python code
+```python
+from py4j.java_gateway import JavaGateway
+
+gw = JavaGateway()
+result = gw.entry_point.strip('samples/bus.pdf')
+#
+# result is a dict of {
+#   'success': 'true' or 'false',
+#   'payload': pdf file content if 'success' is 'true'
+#   'error': error message if 'success' is 'false'
+# }
+#
+print result['payload']
+```
+
 ## Contributors
 Thanks to
 
